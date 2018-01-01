@@ -5,11 +5,13 @@
  */
 package com.mycompany.fbrest;
 
+import com.mycompany.fbrest.models.LastCheckResult;
+
 /**
  *
  * @author Patrik Rojek
  */
 public interface Listener {
     
-    void hotovo(enum nieco, String url);
+    void hotovo(LastCheckResult nieco, String url);
 }
