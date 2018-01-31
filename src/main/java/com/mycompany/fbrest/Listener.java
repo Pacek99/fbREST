@@ -5,7 +5,7 @@
  */
 package com.mycompany.fbrest;
 
-import com.mycompany.fbrest.models.LastCheckResult;
+import eventagent.persistence.entities.LastCheckResult;
 
 /**
  *

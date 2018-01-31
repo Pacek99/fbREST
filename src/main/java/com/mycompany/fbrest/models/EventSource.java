@@ -5,6 +5,9 @@
  */
 package com.mycompany.fbrest.models;
 
+import eventagent.persistence.entities.EventDefaultType;
+import eventagent.persistence.entities.SourceType;
+
 /**
  * Represents the source of an event.
  */
@@ -19,12 +22,23 @@ public class EventSource
     /**
      * The type of the source.
      */
-    public EventSourceType sourceType;
+    public SourceType sourceType;
 
     /**
      * The default type of events gotten from this source.
      */
-    public EventType defaultType;
+    public EventDefaultType defaultType;
+    
+    public Integer frequency;
+
+    
+    public Integer getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(Integer frequency) {
+        this.frequency = frequency;
+    }
 
     public String getSource() {
         return source;
@@ -34,19 +48,19 @@ public class EventSource
         this.source = source;
     }
 
-    public EventSourceType getSourceType() {
+    public SourceType getSourceType() {
         return sourceType;
     }
 
-    public void setSourceType(EventSourceType sourceType) {
+    public void setSourceType(SourceType sourceType) {
         this.sourceType = sourceType;
     }
 
-    public EventType getDefaultType() {
+    public EventDefaultType getDefaultType() {
         return defaultType;
     }
 
-    public void setDefaultType(EventType defaultType) {
+    public void setDefaultType(EventDefaultType defaultType) {
         this.defaultType = defaultType;
     }
     

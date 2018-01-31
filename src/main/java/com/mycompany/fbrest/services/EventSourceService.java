@@ -1,0 +1,58 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.mycompany.fbrest.services;
+
+import com.mycompany.fbrest.models.EventSource;
+import java.util.List;
+import eventagent.persistence.dao.mysql.MySQLEventsSourceDAO;
+import eventagent.persistence.entities.EventsSource;
+import eventagent.persistence.entities.LastCheckResult;
+import java.util.Date;
+import org.apache.commons.lang.time.DateUtils;
+
+/**
+ *
+ * @author Patrik Rojek
+ */
+public class EventSourceService {
+
+    private MySQLEventsSourceDAO eventsSourceDAO;
+    
+    public EventSourceService() {
+        eventsSourceDAO = new MySQLEventsSourceDAO();
+    }
+    
+    public void addNewSource(EventSource source) {
+        EventsSource es = new EventsSource();
+        es.setSourceURL(source.getSource());
+        es.setEventDefaultType(source.getDefaultType());
+        LastCheckResult lcr = LastCheckResult.not_checked;
+        es.setLastCheckResult(lcr);
+        es.setLastCheckTime(new Date());
+        es.setNextCheckTime(DateUtils.addHours(es.getLastCheckTime(), source.getFrequency()));
+        es.setDownloadFrequencyInHours(source.getFrequency());
+        es.setAdded(new Date());
+        es.setSourceType(source.getSourceType());
+        
+        eventsSourceDAO.addNewEventsSource(es);
+    }
+    
+    public List<EventsSource> getSources() {
+        List<EventsSource> list = eventsSourceDAO.getAllEventsSources();
+        return list;
+    }
+    
+    public void deleteSource(String source) {
+        EventsSource es = new EventsSource();
+        es.setSourceURL(source);
+        eventsSourceDAO.deleteEventsSource(eventsSourceDAO.get(es));
+    }
+
+    public void updateFrequency(String source, Double newFrequency) {
+        eventsSourceDAO.updateFrequency(source, newFrequency.intValue());
+    }
+    
+}
