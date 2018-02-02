@@ -31,26 +31,17 @@ public class EventElastic
     /**
      * The time when the event begins.
      */
-    public LocalDateTime start_time;
+    public String start_time;
 
     /**
      * The time when the event ends.
      */
-    public LocalDateTime end_time;
+    public String end_time;
 
-    
-    /**
-     * The type of the event.
-     */
-    //public String eventType;
+    public String name;
 
-    /**
-     * The http facebook url to the event.
-     */
-    //public String url;
-
-    /**
-     * The http event source url.
-     */
-    //public String eventSourceUrl;
+    @Override
+    public String toString() {
+        return id + place.toString() + description + start_time + end_time + name; //To change body of generated methods, choose Tools | Templates.
+    }
 }

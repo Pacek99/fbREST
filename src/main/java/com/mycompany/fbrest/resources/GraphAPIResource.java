@@ -11,6 +11,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import org.json.JSONException;
 
 /**
  *
@@ -24,7 +25,7 @@ public class GraphAPIResource {
     @GET
     @Path("/{source}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void updateSource(@PathParam("source") String source){
-        gapis.getEventsFromSource(source);
+    public void updateSource(@PathParam("source") String source) throws JSONException{
+        gapis.saveEvents(source);
     }
 }

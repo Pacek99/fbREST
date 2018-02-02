@@ -8,6 +8,7 @@ package com.mycompany.fbrest.models;
 import eventagent.persistence.entities.EventDefaultType;
 import java.util.List;
 import events.entities.Event;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -23,8 +24,8 @@ public class EventDTO {
             newEvent.id = "fb-" + event.id;
             newEvent.place = event.place;
             newEvent.description = event.description;
-            newEvent.startTime = event.start_time;
-            newEvent.endTime = event.end_time;
+            newEvent.startTime = LocalDateTime.parse(event.start_time);
+            newEvent.endTime = LocalDateTime.parse(event.end_time);
             newEvent.url = "https://www.facebook.com/events/" + event.id;
             newEvent.eventSourceUrl = "https://www.facebook.com/" + source;
             newEvent.eventType = EventDefaultType.unspecified.toString();   
