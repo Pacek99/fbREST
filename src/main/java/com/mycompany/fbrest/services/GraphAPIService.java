@@ -76,7 +76,7 @@ public class GraphAPIService {
         return data; 
     }
     
-    
+    /*
     public static void main(String[] args) throws JSONException {
         HttpClient client = HttpClientBuilder.create().build();
         HttpGet request = new HttpGet("https://graph.facebook.com/v2.11/331514527167/events?access_token=EAACEdEose0cBAI3P7LW4yrjTDC32YbeL9oy9qQlOvkOnl8D3ZChGoYbV03K81bLih9lnTPAFF5diF4O2LLMq86skjA7ipVJMZBDr84c0rXMSUjPmb3zOx5T0gso3SiGbY3OmkDSm6dNBypZCnlG6w8YwpU1Rznr7964KntJlZBZBh9bo9fzxANx5bbIAGyBAZD");
@@ -95,7 +95,7 @@ public class GraphAPIService {
             System.out.println(data.size());            
         } catch (IOException e) {
             e.printStackTrace();
-        }    
-    }
+        }   
+    }*/ 
     
 }
