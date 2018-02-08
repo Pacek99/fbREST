@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -56,9 +57,9 @@ public class GraphAPIService {
     
     public static List<Event> getEventsFromSource(String source) throws JSONException{
         HttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet("https://graph.facebook.com/v2.11/" + source + "/events?access_token=EAACEdEose0cBAAjvMPeIsf9by0M1qcGICVTskfPtJOvZAStdBPFPRYdu7uKiomxOeAb2oRZAfNq5cYzQEfcaPWxYpxi0QIKcTRoKveASyM9NmNfizqXdwGddK6gSbqQwAKlzDxqeFK0EPLPn64cqUuo4cYvZCx7XeFxJ9EpTRVtUAugHpNc5m4ZATjCHLhwZD");
-
-        List<Event> data = null;
+        HttpGet request = new HttpGet("https://graph.facebook.com/v2.11/" + source + "/events?access_token=EAACEdEose0cBAHGDfinXKDweEqYCZBTdxhqGuYSazrRKjdgxa1HZBE8A4c5RMZBCzBTGHIWIZCA8Ao7ET77nqqXyl7hOQWsbVsA7sVhD6BQZC0FzN4MBRf1z0WThEdz2et1AEZBZBTTQtXbJi6sJjBQAEHrngkAS1BiuWn7gdiGK2SigbNIbsvZB6RbNMtbIoUZAtwY3gZCtWCeAZDZD");
+        
+        List<Event> data = new ArrayList<>();
         try {
             HttpResponse response = client.execute(request);
             HttpEntity entity = response.getEntity();
@@ -66,20 +67,40 @@ public class GraphAPIService {
             // Read the contents of an entity and return it as a String.
             String content = EntityUtils.toString(entity);
             
-            ObjectMapper mapper = new ObjectMapper();
             data = ParserJSON.parsujJSON(content, source);
             
-            System.out.println(data.size());            
+            //System.out.println(data.size());            
         } catch (IOException e) {
             e.printStackTrace();
         }    
         return data; 
     }
     
-    /*
-    public static void main(String[] args) throws JSONException {
+    public static List<Event> getEventsFromURL(String url, String source) throws JSONException{
         HttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet("https://graph.facebook.com/v2.11/331514527167/events?access_token=EAACEdEose0cBAI3P7LW4yrjTDC32YbeL9oy9qQlOvkOnl8D3ZChGoYbV03K81bLih9lnTPAFF5diF4O2LLMq86skjA7ipVJMZBDr84c0rXMSUjPmb3zOx5T0gso3SiGbY3OmkDSm6dNBypZCnlG6w8YwpU1Rznr7964KntJlZBZBh9bo9fzxANx5bbIAGyBAZD");
+        HttpGet request = new HttpGet(url);
+
+        List<Event> data = new ArrayList<>();
+        try {
+            HttpResponse response = client.execute(request);
+            HttpEntity entity = response.getEntity();
+
+            // Read the contents of an entity and return it as a String.
+            String content = EntityUtils.toString(entity);
+            
+            data = ParserJSON.parsujJSON(content, source);
+            
+            //System.out.println(data.size());            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }    
+        return data; 
+    }
+    
+    public static void main(String[] args) throws JSONException {
+        /*
+        HttpClient client = HttpClientBuilder.create().build();
+        HttpGet request = new HttpGet("https://graph.facebook.com/v2.11/331514527167/events?access_token=EAACEdEose0cBAHGDfinXKDweEqYCZBTdxhqGuYSazrRKjdgxa1HZBE8A4c5RMZBCzBTGHIWIZCA8Ao7ET77nqqXyl7hOQWsbVsA7sVhD6BQZC0FzN4MBRf1z0WThEdz2et1AEZBZBTTQtXbJi6sJjBQAEHrngkAS1BiuWn7gdiGK2SigbNIbsvZB6RbNMtbIoUZAtwY3gZCtWCeAZDZD");
 
         List<Event> data;
   
@@ -87,15 +108,22 @@ public class GraphAPIService {
             HttpResponse response = client.execute(request);
             HttpEntity entity = response.getEntity();
 
+            
             // Read the contents of an entity and return it as a String.
             String content = EntityUtils.toString(entity);
-            ObjectMapper mapper = new ObjectMapper();
-            data = ParserJSON.parsujJSON(content, "331514527167");
+            JSONObject obj = new JSONObject(content);
+            JSONObject next = obj.getJSONObject("paging");
+            String dalsia = next.getString("next");
         
-            System.out.println(data.size());            
+            data = ParserJSON.parsujJSON(content, "331514527167");
+            
+            System.out.println(data.size());
+            
+            System.out.println(dalsia);            
         } catch (IOException e) {
             e.printStackTrace();
-        }   
-    }*/ 
+        }*/   
+        System.out.println(GraphAPIService.getEventsFromSource("331514527167").size());
+    }
     
 }
