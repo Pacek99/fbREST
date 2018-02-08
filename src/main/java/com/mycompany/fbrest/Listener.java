@@ -5,7 +5,7 @@
  */
 package com.mycompany.fbrest;
 
-import eventagent.persistence.entities.LastCheckResult;
+import eventagent.persistence.entities.EventsSource;
 
 /**
  *
@@ -13,5 +13,5 @@ import eventagent.persistence.entities.LastCheckResult;
  */
 public interface Listener {
     
-    void hotovo(LastCheckResult nieco, String url);
+    void hotovo(EventsSource es);
 }
