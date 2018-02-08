@@ -10,8 +10,11 @@ import java.util.List;
 import eventagent.persistence.dao.mysql.MySQLEventsSourceDAO;
 import eventagent.persistence.entities.EventsSource;
 import eventagent.persistence.entities.LastCheckResult;
+import java.util.ArrayList;
 import java.util.Date;
 import org.apache.commons.lang.time.DateUtils;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -22,7 +25,9 @@ public class EventSourceService {
     private MySQLEventsSourceDAO eventsSourceDAO;
     
     public EventSourceService() {
-        eventsSourceDAO = new MySQLEventsSourceDAO();
+        ApplicationContext context = new ClassPathXmlApplicationContext("MySQLPersistenceBeans.xml");
+		//get the dao defined in Bean
+        eventsSourceDAO = (MySQLEventsSourceDAO) context.getBean("eventsSourceDAO");
     }
     
     public void addNewSource(EventSource source) {
@@ -41,7 +46,8 @@ public class EventSourceService {
     }
     
     public List<EventsSource> getSources() {
-        List<EventsSource> list = eventsSourceDAO.getAllEventsSources();
+        List<EventsSource> list = new ArrayList<>();
+        list = eventsSourceDAO.getAllEventsSources();
         return list;
     }
     
