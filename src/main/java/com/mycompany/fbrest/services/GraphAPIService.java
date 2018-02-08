@@ -5,6 +5,7 @@
  */
 package com.mycompany.fbrest.services;
 
+import com.mycompany.fbrest.Listener;
 import org.apache.http.HttpResponse;
 import java.io.IOException;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import com.mycompany.fbrest.models.ParserJSON;
+import eventagent.persistence.entities.EventsSource;
 import events.Launcher;
 import events.entities.Event;
 import java.util.ArrayList;
@@ -27,7 +29,9 @@ import org.json.JSONObject;
  */
 public class GraphAPIService {
 
-    public void saveEvents(String source) throws JSONException {
+    public void saveEvents(EventsSource es, Listener listener) throws JSONException {
+        String source = es.getSourceURL();
+        
         List<Event> allRecievedEvents = GraphAPIService.getEventsFromSource(source);
         List<Event> newRecievedEvents = new ArrayList<>();
         for (Event recievedEvent : allRecievedEvents) {
@@ -55,8 +59,10 @@ public class GraphAPIService {
                 Launcher.eventsSimilarityService.saveNew(newRecievedEvents.get(i).id, newRecievedEvents.get(j).id, Launcher.similarityCalculator.calculateSimilarityCoefficient(newRecievedEvents.get(i), newRecievedEvents.get(j)));
             }
         }
+        
+        //7. updatovat dany EventsSource (lastcheckresult, lastcheck, nextchecktime vyratane podla frekvencie)
 
-        //7. zavolas metodu hotovo 
+        //8. zavolas metodu hotovo 
     }
 
     public static List<Event> getEventsFromSource(String source) throws JSONException {
