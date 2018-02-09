@@ -6,7 +6,6 @@
 package com.mycompany.fbrest.resources;
 
 import com.mycompany.fbrest.services.AdminService;
-import eventagent.persistence.entities.Admin;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;

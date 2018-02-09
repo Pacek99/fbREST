@@ -16,10 +16,12 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import com.mycompany.fbrest.models.ParserJSON;
 import eventagent.persistence.entities.EventsSource;
+import eventagent.persistence.entities.LastCheckResult;
 import events.Launcher;
 import events.entities.Event;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Date;
+import org.apache.commons.lang.time.DateUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -61,13 +63,22 @@ public class GraphAPIService {
         }
         
         //7. updatovat dany EventsSource (lastcheckresult, lastcheck, nextchecktime vyratane podla frekvencie)
-
+        EventsSource updated = es;
+        if (!newRecievedEvents.isEmpty()) {
+            updated.setLastCheckResult(LastCheckResult.new_event_found);
+        } else {            
+            updated.setLastCheckResult(LastCheckResult.none_new_event_found);
+        }
+        updated.setLastCheckTime(new Date());
+        updated.setNextCheckTime(DateUtils.addHours(updated.getLastCheckTime(), updated.getDownloadFrequencyInHours()));
+        
         //8. zavolas metodu hotovo 
+        listener.hotovo(updated);
     }
 
     public static List<Event> getEventsFromSource(String source) throws JSONException {
         HttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet("https://graph.facebook.com/v2.11/" + source + "/events?access_token=EAACEdEose0cBAHGDfinXKDweEqYCZBTdxhqGuYSazrRKjdgxa1HZBE8A4c5RMZBCzBTGHIWIZCA8Ao7ET77nqqXyl7hOQWsbVsA7sVhD6BQZC0FzN4MBRf1z0WThEdz2et1AEZBZBTTQtXbJi6sJjBQAEHrngkAS1BiuWn7gdiGK2SigbNIbsvZB6RbNMtbIoUZAtwY3gZCtWCeAZDZD");
+        HttpGet request = new HttpGet("https://graph.facebook.com/v2.11/" + source + "/events?access_token=EAACEdEose0cBAJIxWgJmNWdBLIw7BU7tdpslcQAAxK8ZCATuddcVrdQo38tmZB8LJ5UugRJVHJUH4bibCqR05empKhb1bWPQ5n4ZBJ7ADcI2iSqh7CZB0HQ29ovtNNsK0AJpTdVMKtxO1DuUdV2orFHcqWVUel6srekUiGa7hKqMoeh90twQg94ZBxgbHZBwolAza17YbEUgZDZD");
 
         List<Event> data = new ArrayList<>();
         try {
@@ -107,33 +118,10 @@ public class GraphAPIService {
         return data;
     }
 
+    /*
     public static void main(String[] args) throws JSONException {
-        /*
-        HttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet("https://graph.facebook.com/v2.11/331514527167/events?access_token=EAACEdEose0cBAHGDfinXKDweEqYCZBTdxhqGuYSazrRKjdgxa1HZBE8A4c5RMZBCzBTGHIWIZCA8Ao7ET77nqqXyl7hOQWsbVsA7sVhD6BQZC0FzN4MBRf1z0WThEdz2et1AEZBZBTTQtXbJi6sJjBQAEHrngkAS1BiuWn7gdiGK2SigbNIbsvZB6RbNMtbIoUZAtwY3gZCtWCeAZDZD");
-
-        List<Event> data;
-  
-        try {
-            HttpResponse response = client.execute(request);
-            HttpEntity entity = response.getEntity();
-
-            
-            // Read the contents of an entity and return it as a String.
-            String content = EntityUtils.toString(entity);
-            JSONObject obj = new JSONObject(content);
-            JSONObject next = obj.getJSONObject("paging");
-            String dalsia = next.getString("next");
-        
-            data = ParserJSON.parsujJSON(content, "331514527167");
-            
-            System.out.println(data.size());
-            
-            System.out.println(dalsia);            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         System.out.println(GraphAPIService.getEventsFromSource("331514527167").size());
     }
+    */
 
 }

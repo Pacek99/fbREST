@@ -38,7 +38,7 @@ public class EventSourceResouce {
     @Path("/{source}/{newFrequency}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void updateFrequency(@PathParam("source") String source,
-                                @PathParam("newFrequency") Double newFrequency){
+                                @PathParam("newFrequency") Integer newFrequency){
         ess.updateFrequency(source,newFrequency); 
     }
     
