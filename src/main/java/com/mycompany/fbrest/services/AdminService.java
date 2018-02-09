@@ -7,7 +7,6 @@ package com.mycompany.fbrest.services;
 
 import eventagent.persistence.dao.mysql.MySQLAdminDAO;
 import eventagent.persistence.entities.Admin;
-import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -33,5 +32,9 @@ public class AdminService {
         } else {
             return false;
         }
+    }
+
+    public void add(Admin admin) {
+        adminDAO.addNewAdmin(admin);
     }
 }

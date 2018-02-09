@@ -6,9 +6,10 @@
 package com.mycompany.fbrest.resources;
 
 import com.mycompany.fbrest.services.AdminService;
-import java.util.List;
+import eventagent.persistence.entities.Admin;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -22,6 +23,12 @@ import javax.ws.rs.core.MediaType;
 public class AdminResource {
     
     AdminService as = new AdminService();
+    
+    @POST 
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addSource(Admin admin){
+        as.add(admin); 
+    }
 
     @GET
     @Path("/{admin}")
