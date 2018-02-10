@@ -78,7 +78,7 @@ public class GraphAPIService {
 
     public static List<Event> getEventsFromSource(String source) throws JSONException {
         HttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet("https://graph.facebook.com/v2.11/" + source + "/events?access_token=EAACEdEose0cBAJIxWgJmNWdBLIw7BU7tdpslcQAAxK8ZCATuddcVrdQo38tmZB8LJ5UugRJVHJUH4bibCqR05empKhb1bWPQ5n4ZBJ7ADcI2iSqh7CZB0HQ29ovtNNsK0AJpTdVMKtxO1DuUdV2orFHcqWVUel6srekUiGa7hKqMoeh90twQg94ZBxgbHZBwolAza17YbEUgZDZD");
+        HttpGet request = new HttpGet("https://graph.facebook.com/v2.11/" + source + "/events?access_token=168254080466042|966c59b40855fd96c57e06735cd894d6");
 
         List<Event> data = new ArrayList<>();
         try {

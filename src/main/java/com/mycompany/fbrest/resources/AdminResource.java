@@ -32,7 +32,6 @@ public class AdminResource {
 
     @GET
     @Path("/{admin}")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public boolean isAdmin(@PathParam("admin") String admin){
         return as.isAdmin(admin);
