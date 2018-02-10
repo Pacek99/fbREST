@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Patrik Rojek
  */
-
+/*
 @Path("/getTypes")
 public class GetTypesResource {
     
@@ -30,4 +30,13 @@ public class GetTypesResource {
         o[1] = bbb;
         return o;
     }
-}
+    
+    public static void main(String[] args) {
+        SourceType[] aaa = SourceType.values();
+        EventDefaultType[] bbb = EventDefaultType.values();
+        Object[] o = new Object[2];
+        o[0] = aaa;
+        o[1] = bbb;
+        System.out.println(o);
+    }
+}*/
