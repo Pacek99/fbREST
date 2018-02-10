@@ -24,13 +24,13 @@ public class AdminService {
         adminDAO = (MySQLAdminDAO) context.getBean("adminDAO");
     }
     
-    public boolean isAdmin(String admin) {
+    public String isAdmin(String admin) {
         Admin a = new Admin();
         a.setAdminFbId(admin);
         if (adminDAO.get(a) != null) {
-            return true;
+            return "true";
         } else {
-            return false;
+            return "false";
         }
     }
 
