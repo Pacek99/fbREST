@@ -63,6 +63,7 @@ public class EventSourceService {
         eventsSource.setSourceURL(source);
         eventsSource = eventsSourceDAO.get(eventsSource);
         eventsSource.setDownloadFrequencyInHours(newFrequency);
+        eventsSource.setNextCheckTime(DateUtils.addHours(eventsSource.getLastCheckTime(), newFrequency));
         eventsSourceDAO.update(eventsSource);
         return eventsSource;
     }
