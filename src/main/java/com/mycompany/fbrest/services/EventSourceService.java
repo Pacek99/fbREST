@@ -30,7 +30,7 @@ public class EventSourceService {
         eventsSourceDAO = (MySQLEventsSourceDAO) context.getBean("eventsSourceDAO");
     }
     
-    public void addNewSource(EventSource source) {
+    public EventsSource addNewSource(EventSource source) {
         EventsSource es = new EventsSource();
         es.setSourceURL(source.getSource());
         es.setEventDefaultType(source.getDefaultType());
@@ -43,6 +43,7 @@ public class EventSourceService {
         es.setSourceType(source.getSourceType());
         
         eventsSourceDAO.addNewEventsSource(es);
+        return es;
     }
     
     public List<EventsSource> getSources() {

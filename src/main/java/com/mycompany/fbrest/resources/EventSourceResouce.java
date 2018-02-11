@@ -30,8 +30,9 @@ public class EventSourceResouce {
     
     @POST 
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addSource(EventSource source){
-        ess.addNewSource(source); 
+    @Produces(MediaType.APPLICATION_JSON)
+    public EventsSource addSource(EventSource source){
+        return ess.addNewSource(source); 
     }
    
     @PUT
