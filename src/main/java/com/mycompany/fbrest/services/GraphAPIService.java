@@ -78,7 +78,7 @@ public class GraphAPIService {
 
     public static List<Event> getEventsFromSource(String source) throws JSONException {
         HttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet("https://graph.facebook.com/v2.11/" + source + "/events?access_token=168254080466042|966c59b40855fd96c57e06735cd894d6");
+        HttpGet request = new HttpGet("https://graph.facebook.com/v2.11/" + source + "/events?access_token=168254080466042%7C966c59b40855fd96c57e06735cd894d6");
 
         List<Event> data = new ArrayList<>();
         try {
@@ -122,6 +122,5 @@ public class GraphAPIService {
     public static void main(String[] args) throws JSONException {
         System.out.println(GraphAPIService.getEventsFromSource("331514527167").size());
     }
-    */
-
+    */    
 }
