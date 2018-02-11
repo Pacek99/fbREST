@@ -5,6 +5,7 @@
  */
 package com.mycompany.fbrest.resources;
 
+import com.mycompany.fbrest.models.Types;
 import eventagent.persistence.entities.EventDefaultType;
 import eventagent.persistence.entities.SourceType;
 import javax.ws.rs.GET;
@@ -22,13 +23,8 @@ public class GetTypesResource {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Object[] isAdmin(){
-        SourceType[] aaa = SourceType.values();
-        EventDefaultType[] bbb = EventDefaultType.values();
-        Object[] o = new Object[2];
-        o[0] = aaa;
-        o[1] = bbb;
-        return o;
+    public Types getTypes(){
+        return new Types();
     }
     
     /*
