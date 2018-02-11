@@ -58,12 +58,13 @@ public class EventSourceService {
         eventsSourceDAO.deleteEventsSource(eventsSourceDAO.get(es));
     }
 
-    public void updateFrequency(String source, Integer newFrequency) {
+    public EventsSource updateFrequency(String source, Integer newFrequency) {
         EventsSource eventsSource = new EventsSource();
         eventsSource.setSourceURL(source);
         eventsSource = eventsSourceDAO.get(eventsSource);
         eventsSource.setDownloadFrequencyInHours(newFrequency);
         eventsSourceDAO.update(eventsSource);
+        return eventsSource;
     }
     
 }
