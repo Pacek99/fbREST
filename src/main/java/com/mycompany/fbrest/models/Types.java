@@ -15,15 +15,15 @@ import java.util.stream.Stream;
  */
 public class Types {
     
-    public static String[] sourceTypes;
+    public static String[] sourceTypes = Stream.of(SourceType.values()).map(SourceType::name).toArray(String[]::new);
     
-    public static String[] eventDefaultTypes;
-
+    public static String[] eventDefaultTypes = Stream.of(EventDefaultType.values()).map(EventDefaultType::name).toArray(String[]::new);
+    /*
     public Types() {
         sourceTypes = Stream.of(SourceType.values()).map(SourceType::name).toArray(String[]::new);
         eventDefaultTypes = Stream.of(EventDefaultType.values()).map(EventDefaultType::name).toArray(String[]::new);
     }
-    /*
+    
     public static void main(String[] args){
         sourceTypes = Stream.of(SourceType.values()).map(SourceType::name).toArray(String[]::new);
         eventDefaultTypes = Stream.of(EventDefaultType.values()).map(EventDefaultType::name).toArray(String[]::new);
