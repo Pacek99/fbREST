@@ -15,24 +15,25 @@ import java.util.stream.Stream;
  */
 public class Types {
     
-    public static String[] sourceTypes = Stream.of(SourceType.values()).map(SourceType::name).toArray(String[]::new);
+    public String[] sourceTypes = Stream.of(SourceType.values()).map(SourceType::name).toArray(String[]::new);
     
-    public static String[] eventDefaultTypes = Stream.of(EventDefaultType.values()).map(EventDefaultType::name).toArray(String[]::new);
-    /*
-    public Types() {
-        sourceTypes = Stream.of(SourceType.values()).map(SourceType::name).toArray(String[]::new);
-        eventDefaultTypes = Stream.of(EventDefaultType.values()).map(EventDefaultType::name).toArray(String[]::new);
+    public String[] eventDefaultTypes = Stream.of(EventDefaultType.values()).map(EventDefaultType::name).toArray(String[]::new);   
+
+    public String[] getSourceTypes() {
+        return sourceTypes;
     }
+
+    public void setSourceTypes(String[] sourceTypes) {
+        this.sourceTypes = sourceTypes;
+    }
+
+    public String[] getEventDefaultTypes() {
+        return eventDefaultTypes;
+    }
+
+    public void setEventDefaultTypes(String[] eventDefaultTypes) {
+        this.eventDefaultTypes = eventDefaultTypes;
+    }
+
     
-    public static void main(String[] args){
-        sourceTypes = Stream.of(SourceType.values()).map(SourceType::name).toArray(String[]::new);
-        eventDefaultTypes = Stream.of(EventDefaultType.values()).map(EventDefaultType::name).toArray(String[]::new);
-        
-        for (int i = 0; i < sourceTypes.length; i++) {
-                System.out.println(sourceTypes[i]);            
-        }
-        for (int i = 0; i < eventDefaultTypes.length; i++) {
-                System.out.println(eventDefaultTypes[i]);            
-        }
-    }*/    
 }
