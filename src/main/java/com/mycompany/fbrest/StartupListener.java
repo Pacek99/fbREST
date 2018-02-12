@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebListener;
  *
  * @author Patrik Rojek
  */
+/*
 @WebListener
 public class StartupListener implements ServletContextListener {
 
@@ -28,3 +29,4 @@ public class StartupListener implements ServletContextListener {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
+*/
