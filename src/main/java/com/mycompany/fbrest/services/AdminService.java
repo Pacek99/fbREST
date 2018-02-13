@@ -20,10 +20,10 @@ public class AdminService {
     private MySQLAdminDAO adminDAO;
     
     public AdminService() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("MySQLPersistenceBeans.xml");
+        //ApplicationContext context = new ClassPathXmlApplicationContext("MySQLPersistenceBeans.xml");
 		//get the dao defined in Bean
-        adminDAO = (MySQLAdminDAO) context.getBean("adminDAO");
-        //adminDAO = SingletonForMySQL.getMySQLAdminDAO();
+        //adminDAO = (MySQLAdminDAO) context.getBean("adminDAO");
+        adminDAO = SingletonForMySQL.getMySQLAdminDAO();
     }
     
     public String isAdmin(String admin) {

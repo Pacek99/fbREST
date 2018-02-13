@@ -26,9 +26,9 @@ public class EventSourceService {
     private MySQLEventsSourceDAO eventsSourceDAO;
     
     public EventSourceService() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("MySQLPersistenceBeans.xml");
+        //ApplicationContext context = new ClassPathXmlApplicationContext("MySQLPersistenceBeans.xml");
 		//get the dao defined in Bean
-        eventsSourceDAO = (MySQLEventsSourceDAO) context.getBean("eventsSourceDAO");
+        //eventsSourceDAO = (MySQLEventsSourceDAO) context.getBean("eventsSourceDAO");
         eventsSourceDAO = SingletonForMySQL.getMySQLEventsSourceDAO();
     }
     
