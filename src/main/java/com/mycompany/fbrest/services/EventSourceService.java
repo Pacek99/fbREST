@@ -14,8 +14,6 @@ import eventagent.persistence.entities.LastCheckResult;
 import java.util.ArrayList;
 import java.util.Date;
 import org.apache.commons.lang.time.DateUtils;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -26,9 +24,6 @@ public class EventSourceService {
     private MySQLEventsSourceDAO eventsSourceDAO;
     
     public EventSourceService() {
-        //ApplicationContext context = new ClassPathXmlApplicationContext("MySQLPersistenceBeans.xml");
-		//get the dao defined in Bean
-        //eventsSourceDAO = (MySQLEventsSourceDAO) context.getBean("eventsSourceDAO");
         eventsSourceDAO = SingletonForMySQL.getMySQLEventsSourceDAO();
     }
     

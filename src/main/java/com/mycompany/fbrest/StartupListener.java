@@ -6,21 +6,25 @@
 package com.mycompany.fbrest;
 
 import events.Launcher;
-import javax.annotation.PostConstruct;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 /**
  *
  * @author Patrik Rojek
  */
-/*
-@Startup
-@Singleton
-public class StartupListener {
 
-    @PostConstruct
-    public void init() {
-        // Perform action during application's startup
+@WebListener
+public class StartupListener implements ServletContextListener {
+    @Override
+    public void contextInitialized(ServletContextEvent event) {
+        // Do stuff during webapp's startup.
         Launcher.main(null);
     }
+    @Override
+    public void contextDestroyed(ServletContextEvent event) {
+        // Do stuff during webapp's shutdown.
+    }        
+    
 }
-*/
