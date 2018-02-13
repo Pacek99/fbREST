@@ -25,14 +25,12 @@ public class PomocnyResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Iterable<Event> getEvents(){
-        Launcher.main(null);
         return Launcher.eventService.findAll();
     }
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public long numberOfEventsInDB(){
-        Launcher.main(null);
         return Launcher.eventService.findAll().spliterator().getExactSizeIfKnown();
     }
     
