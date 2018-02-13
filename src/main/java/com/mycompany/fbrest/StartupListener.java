@@ -6,15 +6,15 @@
 package com.mycompany.fbrest;
 
 import events.Launcher;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
+//import javax.servlet.ServletContextEvent;
+//import javax.servlet.ServletContextListener;
+//import javax.servlet.annotation.WebListener;
 
 /**
  *
  * @author Patrik Rojek
  */
-
+/*
 @WebListener
 public class StartupListener implements ServletContextListener {
     @Override
@@ -28,3 +28,4 @@ public class StartupListener implements ServletContextListener {
     }        
     
 }
+*/

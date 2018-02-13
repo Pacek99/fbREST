@@ -5,6 +5,7 @@
  */
 package com.mycompany.fbrest.resources;
 
+import com.mycompany.fbrest.LauncherInicializator;
 import events.Launcher;
 import events.entities.Event;
 import javax.ws.rs.GET;
@@ -25,12 +26,14 @@ public class PomocnyResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Iterable<Event> getEvents(){
+        LauncherInicializator.initLauncher(Launcher.eventService);
         return Launcher.eventService.findAll();
     }
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public long numberOfEventsInDB(){
+        LauncherInicializator.initLauncher(Launcher.eventService);
         return Launcher.eventService.findAll().spliterator().getExactSizeIfKnown();
     }
     
