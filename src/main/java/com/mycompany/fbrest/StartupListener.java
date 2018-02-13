@@ -7,8 +7,6 @@ package com.mycompany.fbrest;
 
 import events.Launcher;
 import javax.annotation.PostConstruct;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
 
 /**
  *
