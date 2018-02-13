@@ -5,6 +5,7 @@
  */
 package com.mycompany.fbrest.services;
 
+import com.mycompany.fbrest.SingletonForMySQL;
 import eventagent.persistence.dao.mysql.MySQLAdminDAO;
 import eventagent.persistence.entities.Admin;
 import org.springframework.context.ApplicationContext;
@@ -19,9 +20,10 @@ public class AdminService {
     private MySQLAdminDAO adminDAO;
     
     public AdminService() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("MySQLPersistenceBeans.xml");
-		//get the dao defined in Bean
-        adminDAO = (MySQLAdminDAO) context.getBean("adminDAO");
+        //ApplicationContext context = new ClassPathXmlApplicationContext("MySQLPersistenceBeans.xml");
+	//	//get the dao defined in Bean
+        //adminDAO = (MySQLAdminDAO) context.getBean("adminDAO");
+        adminDAO = SingletonForMySQL.getMySQLAdminDAO();
     }
     
     public String isAdmin(String admin) {

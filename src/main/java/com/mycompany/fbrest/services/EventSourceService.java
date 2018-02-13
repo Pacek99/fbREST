@@ -5,6 +5,7 @@
  */
 package com.mycompany.fbrest.services;
 
+import com.mycompany.fbrest.SingletonForMySQL;
 import com.mycompany.fbrest.models.EventSource;
 import java.util.List;
 import eventagent.persistence.dao.mysql.MySQLEventsSourceDAO;
@@ -25,9 +26,10 @@ public class EventSourceService {
     private MySQLEventsSourceDAO eventsSourceDAO;
     
     public EventSourceService() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("MySQLPersistenceBeans.xml");
-		//get the dao defined in Bean
-        eventsSourceDAO = (MySQLEventsSourceDAO) context.getBean("eventsSourceDAO");
+        //ApplicationContext context = new ClassPathXmlApplicationContext("MySQLPersistenceBeans.xml");
+	//	//get the dao defined in Bean
+        //eventsSourceDAO = (MySQLEventsSourceDAO) context.getBean("eventsSourceDAO");
+        eventsSourceDAO = SingletonForMySQL.getMySQLEventsSourceDAO();
     }
     
     public EventsSource addNewSource(EventSource source) {
