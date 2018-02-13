@@ -14,6 +14,7 @@ import javax.ejb.Startup;
  *
  * @author Patrik Rojek
  */
+/*
 @Startup
 @Singleton
 public class StartupListener {
@@ -24,3 +25,4 @@ public class StartupListener {
         Launcher.main(null);
     }
 }
+*/
