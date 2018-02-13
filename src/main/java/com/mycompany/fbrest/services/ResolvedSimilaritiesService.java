@@ -5,6 +5,7 @@
  */
 package com.mycompany.fbrest.services;
 
+import com.mycompany.fbrest.LauncherInicializator;
 import events.Launcher;
 import events.entities.Event;
 import events.entities.EventsSimilarity;
@@ -20,6 +21,7 @@ import java.util.Collection;
 public class ResolvedSimilaritiesService {
 
     public void resolveAsEqual(Event newEvent, String event1Id, String event2Id) {
+        LauncherInicializator.initLauncher(Launcher.eventService);
         Collection<String> c = new ArrayList<>();
         c.add(event1Id);
         c.add(event2Id);
@@ -34,6 +36,7 @@ public class ResolvedSimilaritiesService {
     }
 
     public void resolveAsSubevents(String parentId, String childId) {
+        LauncherInicializator.initLauncher(Launcher.eventService);
         Launcher.eventService.markAsSubevents(parentId, childId);
         EventsSimilarity es = Launcher.eventsSimilarityService.findByIds(parentId, childId);
         es.similarityState = SimilarityState.MARKED_AS_SECOND_IS_SUBEVENT;
@@ -42,6 +45,7 @@ public class ResolvedSimilaritiesService {
     }
     
     public void markAsUnresolved(String event1Id, String event2Id){
+        LauncherInicializator.initLauncher(Launcher.eventService);
         Collection<String> c = new ArrayList<>();
         c.add(event1Id);
         c.add(event2Id);

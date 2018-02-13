@@ -5,6 +5,7 @@
  */
 package com.mycompany.fbrest.services;
 
+import com.mycompany.fbrest.LauncherInicializator;
 import events.Launcher;
 import events.dataAccess.EventSearchCriteria;
 import events.entities.Event;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 public class EventFilterService {
     
     public Iterable<Event> filter(Double latitude, Double longitude, Double radius, String startDate){
+        LauncherInicializator.initLauncher(Launcher.eventService);
         EventSearchCriteria esc = new EventSearchCriteria();
         esc.latitude = latitude;
         esc.longitude = longitude;

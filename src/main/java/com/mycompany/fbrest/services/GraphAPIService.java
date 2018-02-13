@@ -5,6 +5,7 @@
  */
 package com.mycompany.fbrest.services;
 
+import com.mycompany.fbrest.LauncherInicializator;
 import com.mycompany.fbrest.Listener;
 import org.apache.http.HttpResponse;
 import java.io.IOException;
@@ -32,6 +33,7 @@ import org.json.JSONObject;
 public class GraphAPIService {
 
     public void saveEvents(EventsSource es, Listener listener) throws JSONException {
+        LauncherInicializator.initLauncher(Launcher.eventService);
         String source = es.getSourceURL();
         
         List<Event> allRecievedEvents = GraphAPIService.getEventsFromSource(source);
