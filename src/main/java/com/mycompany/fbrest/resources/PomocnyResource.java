@@ -32,9 +32,14 @@ public class PomocnyResource {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public long numberOfEventsInDB(){
-        LauncherInicializator.initLauncher(Launcher.eventService);
-        return Launcher.eventService.findAll().spliterator().getExactSizeIfKnown();
+    public /*long*/ void numberOfEventsInDB(){
+        try {
+            LauncherInicializator.initLauncher(Launcher.eventService);
+            //return Launcher.eventService.findAll().spliterator().getExactSizeIfKnown();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
     
 }
