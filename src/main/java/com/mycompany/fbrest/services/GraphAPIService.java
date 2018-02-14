@@ -122,7 +122,16 @@ public class GraphAPIService {
 
     /*
     public static void main(String[] args) throws JSONException {
-        System.out.println(GraphAPIService.getEventsFromSource("331514527167").size());       
+        //System.out.println(GraphAPIService.getEventsFromSource("331514527167").size()); 
+        if (Launcher.eventService == null) {
+            System.out.println("je prazdny");
+        }
+        Launcher.main(null);
+        if (Launcher.eventService == null) {
+            System.out.println("je prazdny");
+        } else {
+            System.out.println("nie je prazdny");
+        }
     }
-    */    
+    */   
 }
