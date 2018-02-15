@@ -33,7 +33,7 @@ import org.json.JSONObject;
 public class GraphAPIService {
 
     public void saveEvents(EventsSource es, Listener listener) throws JSONException {
-        LauncherInicializator.initLauncher(Launcher.eventService);
+        //LauncherInicializator.initLauncher(Launcher.eventService);
         String source = es.getSourceURL();
         
         List<Event> allRecievedEvents = GraphAPIService.getEventsFromSource(source);
@@ -122,16 +122,18 @@ public class GraphAPIService {
 
     /*
     public static void main(String[] args) throws JSONException {
-        //System.out.println(GraphAPIService.getEventsFromSource("331514527167").size()); 
+        //System.out.println(GraphAPIService.getEventsFromSource("331514527167").size());
+    
         if (Launcher.eventService == null) {
             System.out.println("je prazdny");
         }
-        Launcher.main(null);
+        //Launcher.main(null);
         if (Launcher.eventService == null) {
             System.out.println("je prazdny");
         } else {
             System.out.println("nie je prazdny");
         }
+    
     }
-    */     
+    */    
 }

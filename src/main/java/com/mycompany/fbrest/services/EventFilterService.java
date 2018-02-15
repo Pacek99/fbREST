@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class EventFilterService {
     
     public Iterable<Event> filter(Double latitude, Double longitude, Double radius, String startDate){
-        LauncherInicializator.initLauncher(Launcher.eventService);
+        //LauncherInicializator.initLauncher(Launcher.eventService);
         EventSearchCriteria esc = new EventSearchCriteria();
         esc.latitude = latitude;
         esc.longitude = longitude;

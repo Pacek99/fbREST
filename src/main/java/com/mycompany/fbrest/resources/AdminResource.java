@@ -26,7 +26,7 @@ public class AdminResource {
     
     @POST 
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addSource(Admin admin){
+    public void addAdmin(Admin admin){
         as.add(admin); 
     }
 
