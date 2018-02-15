@@ -34,19 +34,21 @@ public class PomocnyResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public /*long*/ String numberOfEventsInDB() {
+    public /*String*/ long numberOfEventsInDB() {
+        LauncherInicializator.initLauncher(Launcher.eventService);
+        return Launcher.eventService.findAll().spliterator().getExactSizeIfKnown();
+        /*
         try {
             Launcher.main(null);
             return "OK";
-            //LauncherInicializator.initLauncher(Launcher.eventService);
-            //return Launcher.eventService.findAll().spliterator().getExactSizeIfKnown();
+
         } catch (Exception e) {
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
             e.printStackTrace(pw);
             return sw.toString();
         }
-
+        */
     }
 
 }
