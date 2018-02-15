@@ -7,6 +7,7 @@ package com.mycompany.fbrest.resources;
 
 import com.mycompany.fbrest.LauncherInicializator;
 import events.Launcher;
+import events.dataAccess.DatabaseInitializer;
 import events.entities.Event;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -34,12 +35,12 @@ public class PomocnyResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public /*String*/ long numberOfEventsInDB() {
-        LauncherInicializator.initLauncher(Launcher.eventService);
-        return Launcher.eventService.findAll().spliterator().getExactSizeIfKnown();
-        /*
-        try {
-            Launcher.main(null);
+    public /*long*/ String numberOfEventsInDB() {
+        //LauncherInicializator.initLauncher(Launcher.eventService);
+        //return Launcher.eventService.findAll().spliterator().getExactSizeIfKnown();
+       
+        try {            
+            DatabaseInitializer i = Launcher.initializer;
             return "OK";
 
         } catch (Exception e) {
@@ -48,7 +49,7 @@ public class PomocnyResource {
             e.printStackTrace(pw);
             return sw.toString();
         }
-        */
+        
     }
 
 }
