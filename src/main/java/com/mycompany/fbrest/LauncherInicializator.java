@@ -16,6 +16,7 @@ public class LauncherInicializator {
     public static void initLauncher(Object o){
         if(o == null) {
          Launcher.main(null);
+         Launcher.initializer.ensureInitialize();
       }
     }    
 }
