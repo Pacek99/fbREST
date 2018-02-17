@@ -55,8 +55,8 @@ public class GraphAPIService {
         }
 
         // tu este treba dvojice novych navzajom
-        for (int i = 0; i < newRecievedEvents.size(); ++i) {
-            for (int j = i + 1; j < newRecievedEvents.size(); ++j) {
+        for (int i = 0; i < newRecievedEvents.size(); i++) {
+            for (int j = i + 1; j < newRecievedEvents.size(); j++) {
                 Launcher.eventsSimilarityService.saveNew(newRecievedEvents.get(i).id, newRecievedEvents.get(j).id, Launcher.similarityCalculator.calculateSimilarityCoefficient(newRecievedEvents.get(i), newRecievedEvents.get(j)));
             }
         }
