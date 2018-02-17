@@ -5,7 +5,6 @@
  */
 package com.mycompany.fbrest.services;
 
-import com.mycompany.fbrest.LauncherInicializator;
 import com.mycompany.fbrest.Listener;
 import org.apache.http.HttpResponse;
 import java.io.IOException;
@@ -24,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import org.apache.commons.lang.time.DateUtils;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  *
@@ -120,20 +118,9 @@ public class GraphAPIService {
         return data;
     }
 
-    /*
+    
     public static void main(String[] args) throws JSONException {
-        //System.out.println(GraphAPIService.getEventsFromSource("331514527167").size());
-    
-        if (Launcher.eventService == null) {
-            System.out.println("je prazdny");
-        }
-        //Launcher.main(null);
-        if (Launcher.eventService == null) {
-            System.out.println("je prazdny");
-        } else {
-            System.out.println("nie je prazdny");
-        }
-    
+        System.out.println(GraphAPIService.getEventsFromSource("331514527167").size());    
     }
-    */    
+        
 }

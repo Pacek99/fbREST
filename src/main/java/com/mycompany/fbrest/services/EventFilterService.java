@@ -5,11 +5,12 @@
  */
 package com.mycompany.fbrest.services;
 
-import com.mycompany.fbrest.LauncherInicializator;
 import events.Launcher;
 import events.dataAccess.EventSearchCriteria;
 import events.entities.Event;
+import java.util.List;
 import java.time.LocalDateTime;
+import jersey.repackaged.com.google.common.collect.Lists;
 
 /**
  *
@@ -17,14 +18,13 @@ import java.time.LocalDateTime;
  */
 public class EventFilterService {
     
-    public Iterable<Event> filter(Double latitude, Double longitude, Double radius, String startDate){
-        //LauncherInicializator.initLauncher(Launcher.eventService);
+    public List<Event> filter(Double latitude, Double longitude, Double radius, String startDate){
         EventSearchCriteria esc = new EventSearchCriteria();
         esc.latitude = latitude;
         esc.longitude = longitude;
         esc.radius = radius;
         esc.startDate = LocalDateTime.parse(startDate);
         
-        return Launcher.eventService.findAll(esc);
+        return Lists.newArrayList(Launcher.eventService.findAll(esc)) ;
     }
 }

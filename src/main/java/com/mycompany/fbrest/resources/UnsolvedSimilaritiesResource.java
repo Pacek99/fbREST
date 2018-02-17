@@ -7,10 +7,12 @@ package com.mycompany.fbrest.resources;
 
 import com.mycompany.fbrest.services.HintAsService;
 import events.entities.EventsSimilarity;
+import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import jersey.repackaged.com.google.common.collect.Lists;
 
 /**
  *
@@ -23,7 +25,7 @@ public class UnsolvedSimilaritiesResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterable<EventsSimilarity> getUnsolvedSimilarities(){
-        return has.getUnsolvedSimilarities();
+    public List<EventsSimilarity> getUnsolvedSimilarities(){
+        return Lists.newArrayList(has.getUnsolvedSimilarities());
     }
 }
