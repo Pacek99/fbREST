@@ -5,10 +5,12 @@
  */
 package com.mycompany.fbrest.resources;
 
+import com.mycompany.fbrest.services.GraphAPIService;
 import events.Launcher;
 import events.entities.Event;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -16,6 +18,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.List;
+import javax.ws.rs.PUT;
+import jersey.repackaged.com.google.common.collect.Lists;
+import org.json.JSONException;
 
 /**
  *
@@ -28,9 +34,9 @@ public class PomocnyResource {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterable<Event> getEvents()
+    public List<Event> getEvents()
     {
-        return Launcher.eventService.findAll();
+        return Lists.newArrayList(Launcher.eventService.findAll());
     }
 
     @GET
@@ -80,5 +86,37 @@ public class PomocnyResource {
             e.printStackTrace(pw);
             return sw.toString();
         }
+    }
+    
+    @PUT
+    public void downloadEvents() throws JSONException
+    {
+        List<Event> allRecievedEvents = GraphAPIService.getEventsFromSource("331514527167");
+        List<Event> newRecievedEvents = new ArrayList<>();
+        for (Event recievedEvent : allRecievedEvents) {
+            if (!Launcher.eventService.existsById(recievedEvent.id)) {
+                newRecievedEvents.add(recievedEvent);
+            }
+        }
+        //3. Vytiahneš všetky staré z databázy (najskôr všetky, tu si nie som istý).
+        Iterable<Event> eventsFromDB = Launcher.eventService.findAll();
+
+        //4. Uložíš ešte aj nové eventy...
+        Launcher.eventService.saveAll(newRecievedEvents);
+
+        //5. Vytvoríš dvojice nových a starých + dvojice nových navzájom. 
+        // + aj 6. Uložíš všetky dvojice dvojice ako EventsSimilarities.
+        for (Event newE : newRecievedEvents) {
+            for (Event e : eventsFromDB) {
+                Launcher.eventsSimilarityService.saveNew(e.id, newE.id, Launcher.similarityCalculator.calculateSimilarityCoefficient(e, newE));
+            }
+        }
+
+        // tu este treba dvojice novych navzajom
+        for (int i = 0; i < newRecievedEvents.size(); ++i) {
+            for (int j = i + 1; j < newRecievedEvents.size(); ++j) {
+                Launcher.eventsSimilarityService.saveNew(newRecievedEvents.get(i).id, newRecievedEvents.get(j).id, Launcher.similarityCalculator.calculateSimilarityCoefficient(newRecievedEvents.get(i), newRecievedEvents.get(j)));
+            }
+        }        
     }
 }

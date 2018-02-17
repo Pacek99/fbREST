@@ -31,7 +31,6 @@ import org.json.JSONException;
 public class GraphAPIService {
 
     public void saveEvents(EventsSource es, Listener listener) throws JSONException {
-        //LauncherInicializator.initLauncher(Launcher.eventService);
         String source = es.getSourceURL();
         
         List<Event> allRecievedEvents = GraphAPIService.getEventsFromSource(source);
@@ -118,9 +117,10 @@ public class GraphAPIService {
         return data;
     }
 
-    
+    /*
     public static void main(String[] args) throws JSONException {
         System.out.println(GraphAPIService.getEventsFromSource("331514527167").size());    
     }
+    */
         
 }
