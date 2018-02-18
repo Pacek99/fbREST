@@ -19,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.List;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.PUT;
 import jersey.repackaged.com.google.common.collect.Lists;
 import org.json.JSONException;
@@ -118,5 +119,10 @@ public class PomocnyResource {
                 Launcher.eventsSimilarityService.saveNew(newRecievedEvents.get(i).id, newRecievedEvents.get(j).id, Launcher.similarityCalculator.calculateSimilarityCoefficient(newRecievedEvents.get(i), newRecievedEvents.get(j)));
             }
         }        
+    }
+    
+    @DELETE
+    public void reinitializeDB() {
+        Launcher.initializer.reinitialize();
     }
 }
