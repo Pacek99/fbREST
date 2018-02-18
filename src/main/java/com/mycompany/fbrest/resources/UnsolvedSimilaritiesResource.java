@@ -38,10 +38,4 @@ public class UnsolvedSimilaritiesResource {
     public List<UnsolvedSimilarity> getUnsolvedSimilarities() {
         return has.getUnsolvedSimilarities();
     }
-
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<EventsSimilarity> getAllSimilarities(){
-        return Lists.newArrayList(Launcher.eventsSimilarityService.findAll());
-    }
 }
