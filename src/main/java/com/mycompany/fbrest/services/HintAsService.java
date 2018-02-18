@@ -5,10 +5,13 @@
  */
 package com.mycompany.fbrest.services;
 
+import com.mycompany.fbrest.UnsolvedSimilarityDTO;
+import com.mycompany.fbrest.models.UnsolvedSimilarity;
 import events.Launcher;
-import events.entities.EventsSimilarity;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import jersey.repackaged.com.google.common.collect.Lists;
 
 /**
  *
@@ -27,7 +30,7 @@ public class HintAsService {
         Launcher.eventsSimilarityService.hintAsSubevent(userId, parentId, childId);
     }    
 
-    public Iterable<EventsSimilarity> getUnsolvedSimilarities() {
-        return Launcher.eventsSimilarityService.findAllUnresolved();
+    public List<UnsolvedSimilarity> getUnsolvedSimilarities() {
+        return UnsolvedSimilarityDTO.transform(Lists.newArrayList(Launcher.eventsSimilarityService.findAllUnresolved()));
     }
 }
