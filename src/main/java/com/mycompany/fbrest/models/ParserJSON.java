@@ -94,7 +94,7 @@ public class ParserJSON {
                         latitude = locationJsonObj.getDouble("latitude");
                     }
                     if (locationJsonObj.has("longitude")) {
-                        latitude = locationJsonObj.getDouble("longitude");
+                        longitude = locationJsonObj.getDouble("longitude");
                     }
                     if (locationJsonObj.has("street")) {
                         street = locationJsonObj.getString("street");

@@ -119,7 +119,10 @@ public class GraphAPIService {
 
     /*
     public static void main(String[] args) throws JSONException {
-        System.out.println(GraphAPIService.getEventsFromSource("331514527167").size());    
+        //System.out.println(GraphAPIService.getEventsFromSource("331514527167").size()); 
+        for (Event arg : GraphAPIService.getEventsFromSource("331514527167")) {
+            System.out.println(arg.place.location.coordinates.getLat() + " " + arg.place.location.coordinates.getLon());
+        }
     }
     */
         
