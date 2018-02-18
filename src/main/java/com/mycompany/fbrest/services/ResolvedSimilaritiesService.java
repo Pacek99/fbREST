@@ -38,10 +38,10 @@ public class ResolvedSimilaritiesService {
         EventsSimilarity es = Launcher.eventsSimilarityService.findByIds(parentId, childId);
         es.similarityState = SimilarityState.MARKED_AS_SECOND_IS_SUBEVENT;
         es.lastStateChange = LocalDateTime.now();
-        Launcher.eventsSimilarityService.update(es);        
+        Launcher.eventsSimilarityService.update(es);
     }
-    
-    public void markAsUnresolved(String event1Id, String event2Id){
+
+    public void resolveAsUnrelated(String event1Id, String event2Id) {
         Collection<String> c = new ArrayList<>();
         c.add(event1Id);
         c.add(event2Id);
@@ -51,5 +51,5 @@ public class ResolvedSimilaritiesService {
         es.lastStateChange = LocalDateTime.now();
         Launcher.eventsSimilarityService.update(es);
     }
-    
+
 }
