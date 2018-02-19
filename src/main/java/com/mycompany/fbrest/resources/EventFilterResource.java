@@ -5,6 +5,7 @@
  */
 package com.mycompany.fbrest.resources;
 
+import com.mycompany.fbrest.models.EventREST;
 import com.mycompany.fbrest.services.EventFilterService;
 import events.entities.Event;
 import java.util.List;
@@ -26,7 +27,7 @@ public class EventFilterResource {
     @GET
     @Path("/{latitude}/{longitude}/{radius}/{startDate}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Event> filterEvents(@PathParam("latitude") Double latitude,
+    public List<EventREST> filterEvents(@PathParam("latitude") Double latitude,
                                     @PathParam("longitude") Double longitude,
                                     @PathParam("radius") Double radius,
                                     @PathParam("startDate") String startDate){

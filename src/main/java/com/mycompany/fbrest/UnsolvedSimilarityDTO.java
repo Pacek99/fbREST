@@ -5,9 +5,9 @@
  */
 package com.mycompany.fbrest;
 
+import com.mycompany.fbrest.models.EventREST;
 import com.mycompany.fbrest.models.UnsolvedSimilarity;
 import events.Launcher;
-import events.entities.Event;
 import events.entities.EventsSimilarity;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +21,14 @@ public class UnsolvedSimilarityDTO {
  
     public static List<UnsolvedSimilarity> transform(List<EventsSimilarity> list){
         List<UnsolvedSimilarity> result = new ArrayList<>();
-        List<Event> events;
+        List<EventREST> events;
         for (EventsSimilarity es : list) {
             UnsolvedSimilarity us = new UnsolvedSimilarity();
             us.id = es.id;
             List<String> ids = new ArrayList<>();
             ids.add(es.eventOneId);
             ids.add(es.eventTwoId);
-            events = Lists.newArrayList(Launcher.eventService.findAllById(ids));
+            events = EventRESTDTO.transform(Lists.newArrayList(Launcher.eventService.findAllById(ids)));
             if (events.get(0).id.equals(es.eventOneId)) {
                 us.eventOne = events.get(0);
                 us.eventTwo = events.get(1);

@@ -5,6 +5,8 @@
  */
 package com.mycompany.fbrest.resources;
 
+import com.mycompany.fbrest.EventRESTDTO;
+import com.mycompany.fbrest.models.EventREST;
 import com.mycompany.fbrest.services.GraphAPIService;
 import events.Launcher;
 import events.entities.Event;
@@ -27,9 +29,9 @@ public class PomocnyResource {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Event> getEvents()
+    public List<EventREST> getEvents()
     {
-        return Lists.newArrayList(Launcher.eventService.findAll());
+        return EventRESTDTO.transform(Lists.newArrayList(Launcher.eventService.findAll()));
     }
 
     @PUT

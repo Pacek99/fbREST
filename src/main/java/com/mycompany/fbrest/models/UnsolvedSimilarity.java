@@ -22,12 +22,12 @@ public class UnsolvedSimilarity {
     /**
      * The id of the first concerned event.
      */
-    public Event eventOne;
+    public EventREST eventOne;
 
     /**
      * The id of the second concerned event.
      */
-    public Event eventTwo;
+    public EventREST eventTwo;
 
     /**
      * The ids of the users that suggest that the given two events are equal. The value is not null.
