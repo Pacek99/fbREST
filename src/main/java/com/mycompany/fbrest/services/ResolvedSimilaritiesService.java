@@ -5,6 +5,8 @@
  */
 package com.mycompany.fbrest.services;
 
+import com.mycompany.fbrest.EventRESTDTO;
+import com.mycompany.fbrest.models.EventREST;
 import events.Launcher;
 import events.entities.Event;
 import events.entities.EventsSimilarity;
@@ -12,6 +14,7 @@ import events.entities.SimilarityState;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  *
@@ -19,7 +22,7 @@ import java.util.Collection;
  */
 public class ResolvedSimilaritiesService {
 
-    public void resolveAsEqual(Event newEvent, String event1Id, String event2Id) {
+    public void resolveAsEqual(EventREST newEvent, String event1Id, String event2Id) {
         Collection<String> c = new ArrayList<>();
         c.add(event1Id);
         c.add(event2Id);
@@ -28,8 +31,9 @@ public class ResolvedSimilaritiesService {
         es.similarityState = SimilarityState.MARKED_AS_EQUAL;
         es.lastStateChange = LocalDateTime.now();
         Launcher.eventsSimilarityService.update(es);
-        Collection<Event> e = new ArrayList<>();
-        e.add(newEvent);
+        List<EventREST> list = new ArrayList<>();
+        list.add(newEvent);
+        Collection<Event> e = EventRESTDTO.toEvents(list);
         Launcher.eventService.saveAll(e);
     }
 
