@@ -7,6 +7,7 @@ package com.mycompany.fbrest.services;
 
 import com.mycompany.fbrest.EventRESTDTO;
 import com.mycompany.fbrest.models.EventREST;
+import com.mycompany.fbrest.models.MergedEvent;
 import events.Launcher;
 import events.entities.Event;
 import events.entities.EventsSimilarity;
@@ -22,11 +23,21 @@ import java.util.List;
  */
 public class ResolvedSimilaritiesService {
 
-    public void resolveAsEqual(EventREST newEvent, String event1Id, String event2Id) {
+    public void resolveAsEqual(MergedEvent event, String event1Id, String event2Id) {
+        EventREST newEvent = new EventREST();
+        newEvent.id = event.id;
+        newEvent.place = event.place;
+        newEvent.description = event.description;
+        newEvent.startTime = event.startTime;
+        newEvent.endTime = event.endTime;
+        newEvent.eventType = event.eventType;
+        newEvent.url = event.url;
+        newEvent.eventSourceUrl = event.eventSourceUrl;
+        
         Collection<String> c = new ArrayList<>();
         c.add(event1Id);
         c.add(event2Id);
-        Launcher.eventService.markAsEqual(c, event1Id);
+        Launcher.eventService.markAsEqual(c, newEvent.id);
         EventsSimilarity es = Launcher.eventsSimilarityService.findByIds(event1Id, event2Id);
         es.similarityState = SimilarityState.MARKED_AS_EQUAL;
         es.lastStateChange = LocalDateTime.now();

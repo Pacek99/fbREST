@@ -6,6 +6,7 @@
 package com.mycompany.fbrest.resources;
 
 import com.mycompany.fbrest.models.EventREST;
+import com.mycompany.fbrest.models.MergedEvent;
 import com.mycompany.fbrest.services.ResolvedSimilaritiesService;
 import events.entities.Event;
 import javax.ws.rs.Consumes;
@@ -28,7 +29,7 @@ public class ResolvedSimilaritiesResource {
     @POST
     @Path("/{event1Id}/{event2Id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void resolveAsEqual(EventREST newEvent,
+    public void resolveAsEqual(MergedEvent newEvent,
             @PathParam("event1Id") String event1Id,
             @PathParam("event2Id") String event2Id) {
         rss.resolveAsEqual(newEvent, event1Id, event2Id);
