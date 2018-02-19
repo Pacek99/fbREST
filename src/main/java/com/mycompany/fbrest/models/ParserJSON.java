@@ -133,12 +133,14 @@ public class ParserJSON {
         }
         
         List<Event> nextData = null;
-        if (obj.getJSONObject("paging").has("next")) {
-            nextData = GraphAPIService.getEventsFromURL(obj.getJSONObject("paging").getString("next"), source);
-        }
-        if (nextData != null) {
-            for (Event event : nextData) {
-                result.add(event);
+        if (obj.has("paging")) {
+            if (obj.getJSONObject("paging").has("next")) {
+                nextData = GraphAPIService.getEventsFromURL(obj.getJSONObject("paging").getString("next"), source);
+            }
+            if (nextData != null) {
+                for (Event event : nextData) {
+                    result.add(event);
+                }
             }
         }
         
