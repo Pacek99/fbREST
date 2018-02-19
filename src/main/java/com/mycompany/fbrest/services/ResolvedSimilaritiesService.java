@@ -36,7 +36,11 @@ public class ResolvedSimilaritiesService {
     public void resolveAsSubevents(String parentId, String childId) {
         Launcher.eventService.markAsSubevents(parentId, childId);
         EventsSimilarity es = Launcher.eventsSimilarityService.findByIds(parentId, childId);
-        es.similarityState = SimilarityState.MARKED_AS_SECOND_IS_SUBEVENT;
+        if (es.eventOneId.equals(parentId)) {
+            es.similarityState = SimilarityState.MARKED_AS_SECOND_IS_SUBEVENT;
+        } else {
+            es.similarityState = SimilarityState.MARKED_AS_FIRST_IS_SUBEVENT;
+        }        
         es.lastStateChange = LocalDateTime.now();
         Launcher.eventsSimilarityService.update(es);
     }
