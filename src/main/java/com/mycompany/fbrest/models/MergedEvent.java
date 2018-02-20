@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
  * @author Patrik Rojek
  */
 public class MergedEvent {
+
+    public MergedEvent() {
+    }
     
     /**
      * The id of the event. It shouldn't be null. For Facebook events, this should be fb-{id}, where 'id' is the unique
