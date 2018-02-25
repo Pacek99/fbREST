@@ -26,6 +26,7 @@ public class ResolvedSimilaritiesService {
     public void resolveAsEqual(MergedEvent event, String event1Id, String event2Id) {
         EventREST newEvent = new EventREST();
         newEvent.id = event.id;
+        newEvent.name = event.name;
         newEvent.place = event.place;
         newEvent.description = event.description;
         newEvent.startTime = event.startTime;

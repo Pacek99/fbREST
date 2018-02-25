@@ -119,6 +119,7 @@ public class ParserJSON {
             
             Event newEvent = new Event();
             newEvent.id = "fb-" + id;
+            newEvent.name = name;
             newEvent.place = pl;
             newEvent.description = description;
             newEvent.startTime = LocalDateTime.parse(start_time.substring(0, start_time.length() - 5));

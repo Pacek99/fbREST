@@ -24,6 +24,11 @@ public class MergedEvent {
     public String id;
 
     /**
+     * The name of the event.
+     */
+    public String name;
+    
+    /**
      * The place where this event happens.
      */
     public PlaceREST place;

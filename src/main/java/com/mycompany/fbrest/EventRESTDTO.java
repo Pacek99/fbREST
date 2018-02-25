@@ -38,6 +38,7 @@ public class EventRESTDTO {
 
             EventREST erest = new EventREST();
             erest.id = event.id;
+            erest.name = event.name;
             erest.place = prest;
             erest.description = event.description;
             erest.startTime = event.startTime;
@@ -71,6 +72,7 @@ public class EventRESTDTO {
 
             Event e = new Event();
             e.id = erest.id;
+            e.name = erest.name;
             e.place = p;
             e.description = erest.description;
             e.startTime = erest.startTime;
