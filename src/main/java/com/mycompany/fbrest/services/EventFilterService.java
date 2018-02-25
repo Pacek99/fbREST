@@ -5,7 +5,9 @@
  */
 package com.mycompany.fbrest.services;
 
+import com.mycompany.fbrest.EventForFilterDTO;
 import com.mycompany.fbrest.EventRESTDTO;
+import com.mycompany.fbrest.models.EventForFilter;
 import com.mycompany.fbrest.models.EventREST;
 import events.Launcher;
 import events.dataAccess.EventSearchCriteria;
@@ -19,13 +21,13 @@ import jersey.repackaged.com.google.common.collect.Lists;
  */
 public class EventFilterService {
     
-    public List<EventREST> filter(Double latitude, Double longitude, Double radius, String startDate){
+    public List<EventForFilter> filter(Double latitude, Double longitude, Double radius, String startDate){
         EventSearchCriteria esc = new EventSearchCriteria();
         esc.latitude = latitude;
         esc.longitude = longitude;
         esc.radius = radius;
         esc.startDate = LocalDateTime.parse(startDate);
         
-        return EventRESTDTO.transform(Lists.newArrayList(Launcher.eventService.findAll(esc)));
+        return EventForFilterDTO.transform(EventRESTDTO.transform(Lists.newArrayList(Launcher.eventService.findAll(esc))));
     }
 }
