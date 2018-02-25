@@ -35,7 +35,10 @@ public class EventForFilterDTO {
             eff.eventSourceUrl = event.eventSourceUrl;
             eff.equalEvents = event.equalEvents;
             eff.mergedEventId = event.mergedEventId;
-            eff.subEvents = EventRESTDTO.transform(Lists.newArrayList(Launcher.eventService.findAllById(event.subEvents)));
+            eff.subEvents = new ArrayList<>();
+            if (!event.subEvents.isEmpty()) {
+                eff.subEvents = EventRESTDTO.transform(Lists.newArrayList(Launcher.eventService.findAllById(event.subEvents)));
+            }            
             eff.parentEventId = event.parentEventId;
 
             result.add(eff);
